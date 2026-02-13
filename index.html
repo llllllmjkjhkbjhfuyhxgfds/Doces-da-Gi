@@ -1,241 +1,152 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html><html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Doces da Gi - Cardápio</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
 <style>
 body{
- margin:0;
- font-family:'Poppins',sans-serif;
- background:linear-gradient(135deg,#ffe4ef,#fff);
- color:#444;
- animation:fadeIn 1s ease;
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#ffe4ef,#fff);
+  color:#444;
 }
-@keyframes fadeIn{
- from{opacity:0;transform:translateY(10px);}
- to{opacity:1;transform:translateY(0);}
-}
-
-/* HEADER */
 header{
- background:white;
- text-align:center;
- padding:25px 15px 15px;
- box-shadow:0 4px 15px rgba(0,0,0,0.1);
- position:sticky;
- top:0;
- z-index:10;
- transition:.3s;
+  background:white;
+  text-align:center;
+  padding:25px 15px 15px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1);
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 .logo{
- width:90px;
- height:90px;
- border-radius:50%;
- object-fit:cover;
- box-shadow:0 4px 12px rgba(0,0,0,0.2);
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  object-fit:cover;
+  box-shadow:0 4px 12px rgba(0,0,0,0.2);
 }
 .titulo{
- font-size:28px;
- font-weight:700;
- margin-top:10px;
- color:#e91e63;
+  font-size:28px;
+  font-weight:700;
+  margin-top:10px;
+  color:#e91e63;
 }
-.sub{font-size:15px;color:#888;}
-
-/* CARROSSEL */
-.galeria{overflow:hidden;padding:15px;position:relative;}
-.track{
- display:flex;
- gap:12px;
- width:max-content;
- animation:scroll 30s linear infinite;
+.sub{
+  font-size:15px;
+  color:#888;
 }
-.galeria:hover .track{animation-play-state:paused;}
+.galeria{overflow:hidden;padding:15px;}
+.track{display:flex;gap:12px;width:max-content;animation:scrollInfinito var(--velocidade,30s) linear infinite;}
+.galeria:hover .track{animation-play-state:paused;} 
+.fade-left,.fade-right{position:absolute;top:0;height:100%;width:60px;pointer-events:none;z-index:2;}
+.fade-left{left:0;background:linear-gradient(to right,#ffe4ef,transparent);} 
+.fade-right{right:0;background:linear-gradient(to left,#ffe4ef,transparent);}
 .track img{
- height:160px;
- width:240px;
- object-fit:cover;
- border-radius:15px;
- box-shadow:0 4px 12px rgba(0,0,0,0.15);
- transition:.3s;
+  height:160px;
+  width:240px;
+  object-fit:cover;
+  border-radius:15px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+  flex-shrink:0;
+  transition:transform .3s;
 }
-.track img:hover{transform:scale(1.05);}
-@keyframes scroll{
- 0%{transform:translateX(0);}
- 100%{transform:translateX(-50%);}
+.track img:hover{transform:scale(1.05);} 
+@keyframes scrollInfinito{
+0%{transform:translateX(0);} 
+100%{transform:translateX(-50%);} 
+} 
+  100%{transform:translateX(-50%);} 
 }
-
-/* CONTAINER */
+.galeria img{
+  height:140px;
+  border-radius:15px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
 .container{
- padding:20px;
- max-width:1100px;
- margin:auto;
+  padding:20px;
+  max-width:1100px;
+  margin:auto;
 }
 .section-title{
- font-size:24px;
- margin:35px 0 15px;
- color:#c2185b;
- font-weight:700;
+  font-size:24px;
+  margin:35px 0 15px;
+  color:#c2185b;
+  font-weight:700;
 }
-
-/* GRID */
 .grid{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
- gap:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
 }
-
-/* CARD */
 .card{
- background:white;
- border-radius:18px;
- padding:20px;
- box-shadow:0 5px 18px rgba(0,0,0,0.12);
- text-align:center;
- transition:.4s;
- opacity:0;
- transform:translateY(30px);
- position:relative;
- overflow:hidden;
+  background:white;
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 5px 18px rgba(0,0,0,0.12);
+  transition:.25s;
+  text-align:center;
 }
-.card.show{
- opacity:1;
- transform:translateY(0);
+.card:hover{
+  transform:translateY(-6px);
 }
-.card:hover{transform:translateY(-6px);}
-.card::before{
- content:"";
- position:absolute;
- top:0;
- left:-75%;
- width:50%;
- height:100%;
- background:linear-gradient(120deg,transparent,rgba(255,255,255,.7),transparent);
- transform:skewX(-25deg);
+.nome{
+  font-size:19px;
+  font-weight:600;
 }
-.card:hover::before{animation:shine 1s;}
-@keyframes shine{100%{left:125%;}}
-
-.nome{font-size:19px;font-weight:600;}
 .preco{
- font-size:22px;
- color:#ff4081;
- margin:10px 0 15px;
- font-weight:700;
+  font-size:22px;
+  color:#ff4081;
+  margin:10px 0 15px;
+  font-weight:700;
 }
-
-/* BOTÃO */
 button{
- background:linear-gradient(45deg,#ff4081,#ff80ab);
- border:none;
- color:white;
- padding:12px 20px;
- border-radius:30px;
- font-size:15px;
- cursor:pointer;
- font-weight:500;
- box-shadow:0 4px 12px rgba(0,0,0,0.15);
- transition:.25s;
- position:relative;
- overflow:hidden;
+  background:linear-gradient(45deg,#ff4081,#ff80ab);
+  border:none;
+  color:white;
+  padding:12px 20px;
+  border-radius:30px;
+  font-size:15px;
+  cursor:pointer;
+  font-weight:500;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+  transition:.25s;
 }
-button:hover{transform:scale(1.05);}
-button:active{transform:scale(.9);}
-button::after{
- content:"";
- position:absolute;
- width:120%;
- height:100%;
- top:0;
- left:-120%;
- background:linear-gradient(120deg,transparent,rgba(255,255,255,.8),transparent);
- transition:.6s;
+button:hover{
+  transform:scale(1.05);
 }
-button:hover::after{left:100%;}
-
-/* FOOTER */
 footer{
- text-align:center;
- padding:30px 20px;
- margin-top:40px;
- background:#fff;
- box-shadow:0 -3px 12px rgba(0,0,0,0.08);
- font-size:15px;
-}
+  text-align:center;
+  padding:30px 20px;
+  margin-top:40px;
+  background:#fff;
+  box-shadow:0 -3px 12px rgba(0,0,0,0.08);
+  font-size:15px;
+}/* animação entrada */ body{animation:fadeIn 1s ease;} @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 
-/* WHATS BTN */
-.whats{
- position:fixed;
- bottom:20px;
- right:20px;
- background:#25D366;
- color:white;
- border-radius:50%;
- width:60px;
- height:60px;
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:28px;
- box-shadow:0 6px 18px rgba(0,0,0,.25);
- cursor:pointer;
- transition:.3s;
-}
-.whats:hover{transform:scale(1.1);}
+/* brilho nos cards */ .card{position:relative;overflow:hidden;} .card::before{ content:""; position:absolute; top:0;left:-75%; width:50%;height:100%; background:linear-gradient(120deg,transparent,rgba(255,255,255,0.6),transparent); transform:skewX(-25deg); } .card:hover::before{animation:shine 1s;} @keyframes shine{100%{left:125%;}}
 
-/* PARTICULAS */
-#particles{
- position:fixed;
- top:0;
- left:0;
- width:100%;
- height:100%;
- z-index:-1;
-}
+/* botão brilho */ button{position:relative;overflow:hidden;} button::after{ content:""; position:absolute; width:120%;height:100%; top:0;left:-120%; background:linear-gradient(120deg,transparent,rgba(255,255,255,.7),transparent); transition:.6s; } button:hover::after{left:100%;}
 
-/* DARK MODE */
-.dark body{background:#111;color:#eee;}
-.dark header,.dark .card,.dark footer{background:#1e1e1e;color:#eee;}
-.dark .section-title{color:#ff80ab;}
+/* botão whatsapp flutuante */ .whats{ position:fixed; bottom:20px; right:20px; background:#25D366; color:white; border-radius:50%; width:60px; height:60px; display:flex; align-items:center; justify-content:center; font-size:28px; box-shadow:0 6px 18px rgba(0,0,0,.25); cursor:pointer; z-index:99; transition:.3s; } .whats:hover{transform:scale(1.1);}
 
-/* LOADER */
-#loader{
- position:fixed;
- width:100%;
- height:100%;
- background:#fff;
- display:flex;
- align-items:center;
- justify-content:center;
- z-index:9999;
-}
-.spinner{
- width:50px;
- height:50px;
- border:5px solid #ffd1e6;
- border-top:5px solid #ff4081;
- border-radius:50%;
- animation:spin 1s linear infinite;
-}
-@keyframes spin{to{transform:rotate(360deg);}}
+/* fundo partículas */ #particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;}
+
+/* parallax header */ header{transition:transform .2s;}
+
+/* dark mode automático */ .dark body{background:linear-gradient(135deg,#1a1a1a,#111);color:#eee;} .dark header,.dark .card,.dark footer{background:#1e1e1e;color:#eee;} .dark .section-title{color:#ff80ab;}
+
 </style>
 </head>
 <body>
-
-<div id="loader"><div class="spinner"></div></div>
-<canvas id="particles"></canvas>
-
-<header>
+<canvas id="particles"></canvas><header>
 <img class="logo" src="logo.jpg">
 <div class="titulo">Doces e Sobremesas da Gi</div>
 <div class="sub">Feito com amor 💖</div>
-</header>
-
-<div class="galeria">
+</header><div class="galeria" style="position:relative">
+<div class="fade-left"></div>
+<div class="fade-right"></div>
 <div class="track">
 <img src="inlustracao1.jpg">
 <img src="inlustracao2.jpg">
@@ -248,62 +159,39 @@ footer{
 <img src="inlustracao4.jpg">
 <img src="inlustracao5.jpg">
 </div>
-</div>
-
-<div class="container">
-
-<div class="section-title">🍫 Bolos Gelados</div>
-<div class="grid" id="bolos"></div>
-
-<div class="section-title">🥧 Tortas</div>
-<div class="grid" id="tortas"></div>
-
-<div class="section-title">🍮 Doces Diversos</div>
-<div class="grid" id="doces"></div>
-
-</div>
-
-<footer>
+</div><div class="container"><div class="section-title">🍫 Bolos Gelados</div>
+<div class="grid" id="bolos"></div><div class="section-title">🥧 Tortas</div>
+<div class="grid" id="tortas"></div><div class="section-title">🍮 Doces Diversos</div>
+<div class="grid" id="doces"></div></div><footer>
 📱 Encomendas: <b>(19) 99689-9300</b><br>
 Aceitamos Pix e Dinheiro
-</footer>
+</footer><script>
+const telefone = "5519996899300";
 
-<div class="whats" onclick="window.open('https://wa.me/5519996899300','_blank')">💬</div>
-
-<audio id="clickSound" src="click.mp3" preload="auto"></audio>
-
-<script>
-const telefone="5519996899300";
-
-/* criar itens */
 function criarItem(nome,preco,container,tipo){
- const div=document.createElement("div");
- div.className="card";
- div.innerHTML=`
-   <div class="nome">${nome}</div>
-   <div class="preco">R$ ${preco}</div>
-   <button onclick="encomendar('${nome}','${tipo}')">Encomendar</button>
- `;
- document.getElementById(container).appendChild(div);
+  const div=document.createElement("div");
+  div.className="card";
+  div.innerHTML=`
+    <div class="nome">${nome}</div>
+    <div class="preco">R$ ${preco}</div>
+    <button onclick="encomendar('${nome}','${tipo}')">Encomendar</button>
+  `;
+  document.getElementById(container).appendChild(div);
 }
 
-/* saudação */
 function saudacao(){
- const h=new Date().getHours();
+ const h=new Date(new Date().toLocaleString("en-US",{timeZone:"America/Sao_Paulo"})).getHours();
  if(h<12)return"Bom dia";
  if(h<18)return"Boa tarde";
  return"Boa noite";
 }
 
-/* encomendar */
 function encomendar(produto,tipo){
- document.getElementById("clickSound").play();
- const msg=`${saudacao()}! Gostaria de encomendar ${tipo} sabor "${produto}"`;
- const url=`https://wa.me/${telefone}?text=${encodeURIComponent(msg)}`;
- setTimeout(()=>window.open(url,"_blank"),200);
+  const msg=`${saudacao()}! Gostaria de encomendar ${tipo} sabor "${produto}"`;
+  const url=`https://wa.me/${telefone}?text=${encodeURIComponent(msg)}`;
+  window.open(url,'_blank');
 }
 
-/* lista produtos */
 [
 ["Choc. meio amargo","95,00"],
 ["Nozes","95,00"],
@@ -331,61 +219,13 @@ function encomendar(produto,tipo){
 ["Pudim","60,00"]
 ].forEach(i=>criarItem(i[0],i[1],"doces","doce"));
 
-/* animação cards */
-const obs=new IntersectionObserver(e=>{
- e.forEach(el=>{
-  if(el.isIntersecting) el.target.classList.add("show");
- });
-});
-setTimeout(()=>{
- document.querySelectorAll(".card").forEach(c=>obs.observe(c));
-},500);
+</script><div class="whats" onclick="window.open('https://wa.me/'+telefone,'_blank')">💬</div>
+<script>/* partículas */ const canvas=document.getElementById("particles"); const ctx=canvas.getContext("2d"); canvas.width=window.innerWidth; canvas.height=window.innerHeight; let parts=[]; for(let i=0;i<60;i++){ parts.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,d:Math.random()0.5}); } function draw(){ ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle="rgba(255,192,203,0.4)"; parts.forEach(p=>{ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI2); ctx.fill(); p.y+=p.d; if(p.y>canvas.height)p.y=0; }); requestAnimationFrame(draw); } draw();
 
-/* loader */
-window.addEventListener("load",()=>{
- document.getElementById("loader").style.display="none";
-});
+/* parallax removido para header ficar fixo */
 
-/* partículas */
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-let parts=[];
-for(let i=0;i<60;i++){
- parts.push({
-  x:Math.random()*canvas.width,
-  y:Math.random()*canvas.height,
-  r:Math.random()*2+1,
-  d:Math.random()*0.5+0.2
- });
-}
-function draw(){
- ctx.clearRect(0,0,canvas.width,canvas.height);
- ctx.fillStyle="rgba(255,192,203,0.4)";
- parts.forEach(p=>{
-  ctx.beginPath();
-  ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-  ctx.fill();
-  p.y+=p.d;
-  if(p.y>canvas.height)p.y=0;
- });
- requestAnimationFrame(draw);
-}
-draw();
+/* dark mode por horário */ const h=new Date().getHours(); if(h>=18||h<6){document.documentElement.classList.add("dark");}
 
-/* parallax */
-window.addEventListener("scroll",()=>{
- document.querySelector("header").style.transform=
- `translateY(${window.scrollY*0.2}px)`;
-});
-
-/* dark automático */
-const h=new Date().getHours();
-if(h>=18||h<6){
- document.documentElement.classList.add("dark");
-}
 </script>
-
 </body>
 </html>
