@@ -128,13 +128,13 @@ Aceitamos Pix e Dinheiro
 </footer><script>
 const telefone = "5519996899300";
 
-function criarItem(nome,preco,container){
+function criarItem(nome,preco,container,categoria){
   const div=document.createElement("div");
   div.className="card";
   div.innerHTML=`
     <div class="nome">${nome}</div>
     <div class="preco">R$ ${preco}</div>
-    <button onclick="encomendar('${nome}','${preco}')">Encomendar</button>
+    <button onclick="encomendar('${nome}','${categoria}')">Encomendar</button>
   `;
   document.getElementById(container).appendChild(div);
 }
@@ -146,8 +146,8 @@ function saudacao(){
   return "Boa noite";
 }
 
-function encomendar(produto,preco){
-  const msg=`${saudacao()}! Quero encomendar: ${produto}`;
+function encomendar(produto,categoria){
+  const msg=`${saudacao()}! Quero encomendar ${categoria} sabor ${produto}`;
   const url=`https://wa.me/${telefone}?text=${encodeURIComponent(msg)}`;
   window.open(url,'_blank');
 }
@@ -161,7 +161,7 @@ function encomendar(produto,preco){
 ["Prestígio","115,00"],
 ["Abacaxi","115,00"],
 ["Mousse maracujá trufado","115,00"]
-].forEach(i=>criarItem(i[0],i[1],"bolos"));
+].forEach(i=>criarItem($1,$2,"bolos","bolo gelado"));
 
 [
 ["Limão","100,00"],
@@ -169,7 +169,7 @@ function encomendar(produto,preco){
 ["Morango","120,00"],
 ["Banoff","120,00"],
 ["Holandesa","160,00"]
-].forEach(i=>criarItem(i[0],i[1],"tortas"));
+].forEach(i=>criarItem($1,$2,"tortas","torta"));
 
 [
 ["Pavê sonho de valsa","130,00"],
@@ -177,7 +177,7 @@ function encomendar(produto,preco){
 ["Bombom morango","130,00"],
 ["Bombom uva","130,00"],
 ["Pudim","60,00"]
-].forEach(i=>criarItem(i[0],i[1],"doces"));
+].forEach(i=>criarItem($1,$2,"doces","doce"));
 
 </script></body>
 </html>
