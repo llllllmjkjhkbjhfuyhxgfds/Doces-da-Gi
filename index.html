@@ -1,4 +1,4 @@
-  <!DOCTYPE html><html lang="pt-br">
+    <!DOCTYPE html><html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +38,11 @@ header{
   color:#888;
 }
 .galeria{overflow:hidden;padding:15px;}
-.track{display:flex;gap:12px;width:max-content;animation:scrollInfinito 30s linear infinite;}
+.track{display:flex;gap:12px;width:max-content;animation:scrollInfinito var(--velocidade,30s) linear infinite;}
+.galeria:hover .track{animation-play-state:paused;} 
+.fade-left,.fade-right{position:absolute;top:0;height:100%;width:60px;pointer-events:none;z-index:2;}
+.fade-left{left:0;background:linear-gradient(to right,#ffe4ef,transparent);} 
+.fade-right{right:0;background:linear-gradient(to left,#ffe4ef,transparent);}
 .track img{height:140px;border-radius:15px;box-shadow:0 4px 12px rgba(0,0,0,0.15);} 
 @keyframes scrollInfinito{
 0%{transform:translateX(0);} 
@@ -117,7 +121,9 @@ footer{
 <img class="logo" src="logo.jpg">
 <div class="titulo">Doces e Sobremesas da Gi</div>
 <div class="sub">Feito com amor 💖</div>
-</header><div class="galeria">
+</header><div class="galeria" style="position:relative">
+<div class="fade-left"></div>
+<div class="fade-right"></div>
 <div class="track">
 <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c">
 <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b">
