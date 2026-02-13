@@ -43,7 +43,16 @@ header{
 .fade-left,.fade-right{position:absolute;top:0;height:100%;width:60px;pointer-events:none;z-index:2;}
 .fade-left{left:0;background:linear-gradient(to right,#ffe4ef,transparent);} 
 .fade-right{right:0;background:linear-gradient(to left,#ffe4ef,transparent);}
-.track img{height:140px;border-radius:15px;box-shadow:0 4px 12px rgba(0,0,0,0.15);} 
+.track img{
+  height:160px;
+  width:240px;
+  object-fit:cover;
+  border-radius:15px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+  flex-shrink:0;
+  transition:transform .3s;
+}
+.track img:hover{transform:scale(1.05);} 
 @keyframes scrollInfinito{
 0%{transform:translateX(0);} 
 100%{transform:translateX(-50%);} 
@@ -125,16 +134,16 @@ footer{
 <div class="fade-left"></div>
 <div class="fade-right"></div>
 <div class="track">
-<img src="Ilustracao1.jpg">
-<img src="Ilustracao2.jpg">
-<img src="Ilustracao3.jpg">
-<img src="Ilustracao4.jpg">
-<img src="Ilustracao5.jpg">
-<img src="Ilustracao1.jpg">
-<img src="Ilustracao2.jpg">
-<img src="Ilustracao3.jpg">
-<img src="Ilustracao4.jpg">
-<img src="Ilustracao5.jpg">
+<img src="inlustracao1.jpg">
+<img src="inlustracao2.jpg">
+<img src="inlustracao3.jpg">
+<img src="inlustracao4.jpg">
+<img src="inlustracao5.jpg">
+<img src="inlustracao1.jpg">
+<img src="inlustracao2.jpg">
+<img src="inlustracao3.jpg">
+<img src="inlustracao4.jpg">
+<img src="inlustracao5.jpg">
 </div>
 </div><div class="container"><div class="section-title">🍫 Bolos Gelados</div>
 <div class="grid" id="bolos"></div><div class="section-title">🥧 Tortas</div>
