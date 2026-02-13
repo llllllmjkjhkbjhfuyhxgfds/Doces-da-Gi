@@ -123,10 +123,24 @@ footer{
   background:#fff;
   box-shadow:0 -3px 12px rgba(0,0,0,0.08);
   font-size:15px;
-}
+}/* animação entrada */ body{animation:fadeIn 1s ease;} @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* brilho nos cards */ .card{position:relative;overflow:hidden;} .card::before{ content:""; position:absolute; top:0;left:-75%; width:50%;height:100%; background:linear-gradient(120deg,transparent,rgba(255,255,255,0.6),transparent); transform:skewX(-25deg); } .card:hover::before{animation:shine 1s;} @keyframes shine{100%{left:125%;}}
+
+/* botão brilho */ button{position:relative;overflow:hidden;} button::after{ content:""; position:absolute; width:120%;height:100%; top:0;left:-120%; background:linear-gradient(120deg,transparent,rgba(255,255,255,.7),transparent); transition:.6s; } button:hover::after{left:100%;}
+
+/* botão whatsapp flutuante */ .whats{ position:fixed; bottom:20px; right:20px; background:#25D366; color:white; border-radius:50%; width:60px; height:60px; display:flex; align-items:center; justify-content:center; font-size:28px; box-shadow:0 6px 18px rgba(0,0,0,.25); cursor:pointer; z-index:99; transition:.3s; } .whats:hover{transform:scale(1.1);}
+
+/* fundo partículas */ #particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;}
+
+/* parallax header */ header{transition:transform .2s;}
+
+/* dark mode automático */ .dark body{background:linear-gradient(135deg,#1a1a1a,#111);color:#eee;} .dark header,.dark .card,.dark footer{background:#1e1e1e;color:#eee;} .dark .section-title{color:#ff80ab;}
+
 </style>
 </head>
-<body><header>
+<body>
+<canvas id="particles"></canvas><header>
 <img class="logo" src="logo.jpg">
 <div class="titulo">Doces e Sobremesas da Gi</div>
 <div class="sub">Feito com amor 💖</div>
@@ -205,5 +219,13 @@ function encomendar(produto,tipo){
 ["Pudim","60,00"]
 ].forEach(i=>criarItem(i[0],i[1],"doces","doce"));
 
-</script></body>
+</script><div class="whats" onclick="window.open('https://wa.me/'+telefone,'_blank')">💬</div>
+<script>/* partículas */ const canvas=document.getElementById("particles"); const ctx=canvas.getContext("2d"); canvas.width=window.innerWidth; canvas.height=window.innerHeight; let parts=[]; for(let i=0;i<60;i++){ parts.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,d:Math.random()0.5}); } function draw(){ ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle="rgba(255,192,203,0.4)"; parts.forEach(p=>{ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI2); ctx.fill(); p.y+=p.d; if(p.y>canvas.height)p.y=0; }); requestAnimationFrame(draw); } draw();
+
+/* parallax */ window.addEventListener("scroll",()=>{ document.querySelector("header").style.transform=translateY(${window.scrollY*0.3}px); });
+
+/* dark mode por horário */ const h=new Date().getHours(); if(h>=18||h<6){document.documentElement.classList.add("dark");}
+
+</script>
+</body>
 </html>
