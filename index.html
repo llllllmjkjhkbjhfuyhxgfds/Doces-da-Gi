@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="pt-br">
+  <!DOCTYPE html><html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,19 +37,13 @@ header{
   font-size:15px;
   color:#888;
 }
-.galeria{
-  display:flex;
-  gap:12px;
-  overflow:hidden;
-  padding:15px;
-  scroll-behavior:smooth;
-}
-.galeria:hover{overflow-x:auto;}
-.galeria.auto-scroll{
-  animation:scrollGaleria 25s linear infinite;
-}
-@keyframes scrollGaleria{
-  0%{transform:translateX(0);} 
+.galeria{overflow:hidden;padding:15px;}
+.track{display:flex;gap:12px;width:max-content;animation:scrollInfinito 30s linear infinite;}
+.track img{height:140px;border-radius:15px;box-shadow:0 4px 12px rgba(0,0,0,0.15);} 
+@keyframes scrollInfinito{
+0%{transform:translateX(0);} 
+100%{transform:translateX(-50%);} 
+} 
   100%{transform:translateX(-50%);} 
 }
 .galeria img{
@@ -123,11 +117,17 @@ footer{
 <img class="logo" src="logo.jpg">
 <div class="titulo">Doces e Sobremesas da Gi</div>
 <div class="sub">Feito com amor 💖</div>
-</header><div class="galeria auto-scroll">
+</header><div class="galeria">
+<div class="track">
 <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c">
 <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b">
 <img src="https://images.unsplash.com/photo-1587241321921-91a834d6d191">
 <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7">
+<img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c">
+<img src="https://images.unsplash.com/photo-1551024601-bec78aea704b">
+<img src="https://images.unsplash.com/photo-1587241321921-91a834d6d191">
+<img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7">
+</div>
 </div><div class="container"><div class="section-title">🍫 Bolos Gelados</div>
 <div class="grid" id="bolos"></div><div class="section-title">🥧 Tortas</div>
 <div class="grid" id="tortas"></div><div class="section-title">🍮 Doces Diversos</div>
