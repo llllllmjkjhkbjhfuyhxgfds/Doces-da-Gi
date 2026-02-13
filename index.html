@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="pt-br">
+  <!DOCTYPE html><html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -139,8 +139,15 @@ function criarItem(nome,preco,container){
   document.getElementById(container).appendChild(div);
 }
 
+function saudacao(){
+  const h=new Date().getHours();
+  if(h<12) return "Bom dia";
+  if(h<18) return "Boa tarde";
+  return "Boa noite";
+}
+
 function encomendar(produto,preco){
-  const msg=`Olá! Quero encomendar: ${produto} - R$ ${preco}`;
+  const msg=`${saudacao()}! Quero encomendar: ${produto}`;
   const url=`https://wa.me/${telefone}?text=${encodeURIComponent(msg)}`;
   window.open(url,'_blank');
 }
