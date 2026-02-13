@@ -40,8 +40,17 @@ header{
 .galeria{
   display:flex;
   gap:12px;
-  overflow-x:auto;
+  overflow:hidden;
   padding:15px;
+  scroll-behavior:smooth;
+}
+.galeria:hover{overflow-x:auto;}
+.galeria.auto-scroll{
+  animation:scrollGaleria 25s linear infinite;
+}
+@keyframes scrollGaleria{
+  0%{transform:translateX(0);} 
+  100%{transform:translateX(-50%);} 
 }
 .galeria img{
   height:140px;
@@ -114,7 +123,7 @@ footer{
 <img class="logo" src="logo.jpg">
 <div class="titulo">Doces e Sobremesas da Gi</div>
 <div class="sub">Feito com amor 💖</div>
-</header><div class="galeria">
+</header><div class="galeria auto-scroll">
 <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c">
 <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b">
 <img src="https://images.unsplash.com/photo-1587241321921-91a834d6d191">
