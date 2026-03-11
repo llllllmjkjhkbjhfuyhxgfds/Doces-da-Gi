@@ -1,0 +1,414 @@
+<!DOCTYPE html>  <html lang="pt-br">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Doces da Gi - Cardápio</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">  <style>  
+body{  
+ margin:0;  
+ font-family:'Poppins',sans-serif;  
+ background:linear-gradient(135deg,#ffe4ef,#fff);  
+ color:#444;  
+ animation:fadeIn 1s ease;  
+}  
+@keyframes fadeIn{  
+ from{opacity:0;transform:translateY(10px);}  
+ to{opacity:1;transform:translateY(0);}  
+}  
+  
+header{  
+ background:white;  
+ text-align:center;  
+ padding:25px 15px 15px;  
+ box-shadow:0 4px 15px rgba(0,0,0,0.1);  
+ position:sticky;  
+ top:0;  
+ z-index:10;  
+}  
+.logo{  
+ width:90px;  
+ height:90px;  
+ border-radius:50%;  
+ object-fit:cover;  
+ box-shadow:0 4px 12px rgba(0,0,0,0.2);  
+}  
+.titulo{  
+ font-size:28px;  
+ font-weight:700;  
+ margin-top:10px;  
+ color:#e91e63;  
+}  
+.sub{font-size:15px;color:#888;}  
+  
+.galeria{overflow:hidden;padding:15px;}  
+.track{  
+ display:flex;  
+ gap:12px;  
+ width:max-content;  
+ animation:scroll 30s linear infinite;  
+}  
+.galeria:hover .track{animation-play-state:paused;}  
+.track img{  
+ height:160px;  
+ width:240px;  
+ object-fit:cover;  
+ border-radius:15px;  
+ box-shadow:0 4px 12px rgba(0,0,0,0.15);  
+}  
+@keyframes scroll{  
+ 0%{transform:translateX(0);}  
+ 100%{transform:translateX(-50%);}  
+}  
+  
+.container{  
+ padding:20px;  
+ max-width:1100px;  
+ margin:auto;  
+}  
+.section-title{  
+ font-size:24px;  
+ margin:35px 0 15px;  
+ color:#c2185b;  
+ font-weight:700;  
+}  
+  
+.grid{  
+ display:grid;  
+ grid-template-columns:repeat(auto-fit,minmax(240px,1fr));  
+ gap:20px;  
+}  
+  
+.card{  
+ background:white;  
+ border-radius:18px;  
+ padding:20px;  
+ box-shadow:0 5px 18px rgba(0,0,0,0.12);  
+ text-align:center;  
+ opacity:0;  
+ transform:translateY(30px);  
+ transition:.5s;  
+}  
+.card.show{  
+ opacity:1;  
+ transform:translateY(0);  
+}  
+  
+.nome{font-size:19px;font-weight:600;}  
+.preco{  
+ font-size:22px;  
+ color:#ff4081;  
+ margin:10px 0 15px;  
+ font-weight:700;  
+}  
+  
+button{  
+ background:linear-gradient(45deg,#ff4081,#ff80ab);  
+ border:none;  
+ color:white;  
+ padding:12px 20px;  
+ border-radius:30px;  
+ font-size:15px;  
+ cursor:pointer;  
+ font-weight:500;  
+ position:relative;  
+ overflow:hidden;  
+ box-shadow:0 4px 12px rgba(0,0,0,0.15);  
+ transition:.3s;  
+}  
+  
+button::before{  
+ content:"";  
+ position:absolute;  
+ top:0;  
+ left:-75%;  
+ width:50%;  
+ height:100%;  
+ background:linear-gradient(120deg,transparent,rgba(255,255,255,0.6),transparent);  
+ transform:skewX(-25deg);  
+ transition:.6s;  
+}  
+  
+button:hover::before{ left:125%; }  
+  
+button:hover{  
+ transform:scale(1.08);  
+ box-shadow:0 6px 18px rgba(0,0,0,0.25);  
+}  
+  
+button:active{  
+ transform:scale(0.95);  
+ box-shadow:0 2px 8px rgba(0,0,0,0.2);  
+}  
+  
+footer{  
+ text-align:center;  
+ padding:30px 20px;  
+ margin-top:40px;  
+ background:#fff;  
+ box-shadow:0 -3px 12px rgba(0,0,0,0.08);  
+ font-size:15px;  
+}  
+  
+.whats{  
+ position:fixed;  
+ bottom:20px;  
+ right:20px;  
+ background:#25D366;  
+ color:white;  
+ border-radius:50%;  
+ width:60px;  
+ height:60px;  
+ display:flex;  
+ align-items:center;  
+ justify-content:center;  
+ font-size:28px;  
+ box-shadow:0 6px 18px rgba(0,0,0,.25);  
+ cursor:pointer;  
+}  
+  
+.dark{  
+ background:#111;  
+ color:#eee;  
+}  
+  
+.dark header,  
+.dark .card,  
+.dark footer{  
+ background:#1e1e1e;  
+ color:#eee;  
+}  
+  
+.dark .section-title{  
+ color:#ff80ab;  
+}  
+  
+#loader{  
+ position:fixed;  
+ width:100%;  
+ height:100%;  
+ background:#fff;  
+ display:flex;  
+ align-items:center;  
+ justify-content:center;  
+ z-index:9999;  
+}  
+.spinner{  
+ width:50px;  
+ height:50px;  
+ border:5px solid #ffd1e6;  
+ border-top:5px solid #ff4081;  
+ border-radius:50%;  
+ animation:spin 1s linear infinite;  
+}  
+@keyframes spin{to{transform:rotate(360deg);}}  
+</style>  </head>  
+<body>  <div id="loader"><div class="spinner"></div></div>  <header>  
+<img class="logo" src="logo.jpg">  
+<div class="titulo">Doces e Sobremesas da Gi</div>  
+<div class="sub">Feito com amor 💖</div>  
+</header>  <div class="galeria">  
+<div class="track">  
+<img src="inlustracao1.jpg">  
+<img src="inlustracao2.jpg">  
+<img src="inlustracao3.jpg">  
+<img src="inlustracao4.jpg">  
+<img src="inlustracao5.jpg">  
+<img src="inlustracao1.jpg">  
+<img src="inlustracao2.jpg">  
+<img src="inlustracao3.jpg">  
+<img src="inlustracao4.jpg">  
+<img src="inlustracao5.jpg">  
+</div>  
+</div>  <div class="container">  <div class="section-title">🍫 Bolos Gelados</div>  
+<div class="grid" id="bolos"></div>  <div class="section-title">🍰 Bolo redondo para corte</div>  
+<div class="grid" id="bolosRedondos"></div>  <div class="section-title">🥧 Tortas</div>  
+<div class="grid" id="tortas"></div>  
+<div class="section-title">🍬 Docinhos</div>
+<p style="margin-top:-10px;color:#777;">Mínimo 25 de cada sabor</p>
+<div class="grid" id="docinhos"></div>
+
+<div class="section-title">🍫 Mini Trufas</div>
+<p style="margin-top:-10px;color:#777;">Mínimo 25 de cada sabor</p>
+<div class="grid" id="trufas"></div>
+<div class="section-title">🍮 Doces Diversos</div>  
+<div class="grid" id="doces"></div>  </div>  <footer>  
+📱 Encomendas: <b>(19) 99689-9300</b><br>  
+Aceitamos Pix e Dinheiro  
+</footer>  <div class="whats" onclick="window.open('https://wa.me/5519996899300','_blank')">💬</div>  
+<audio id="clickSound" src="click.mp3" preload="auto"></audio>  <div id="modalBolo" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;z-index:9999;">  
+<div style="background:#000;color:#fff;padding:25px;border-radius:15px;width:90%;max-width:400px;text-align:center;">  
+<h3>Escolha os sabores</h3>  <label>Recheio 1</label>
+<select id="recheio1">
+
+<option>Brigadeiro Gourmet</option>  
+<option>Brigadeiro de Ninho</option>  
+<option>Mousse de Chocolate</option>  
+<option>Mousse de Morango</option>  
+<option>Mousse de Maracujá</option>  
+<option>Mousse de Limão</option>  
+<option>Bicho de Pé</option>  
+<option>Beijinho</option>  
+<option>Brigadeiro de Paçoca</option>  
+</select>  <br><br>
+
+<label>Recheio 2</label>
+<select id="recheio2">
+
+<option>Brigadeiro Gourmet</option>  
+<option>Brigadeiro de Ninho</option>  
+<option>Mousse de Chocolate</option>  
+<option>Mousse de Morango</option>  
+<option>Mousse de Maracujá</option>  
+<option>Mousse de Limão</option>  
+<option>Bicho de Pé</option>  
+<option>Beijinho</option>  
+<option>Brigadeiro de Paçoca</option>  
+</select>  <br><br>
+
+<label>Massa</label>
+<select id="massa">
+
+<option>Chocolate</option>  
+<option>Branca</option>  
+</select>  <br><br>
+
+<button onclick="confirmarBolo()">Encomendar</button>
+<button onclick="fecharModal()">Cancelar</button>
+
+</div>  
+</div>  <script>  
+  
+/* SEU JAVASCRIPT ORIGINAL CONTINUA EXATAMENTE IGUAL */  
+  
+const telefone="5519996899300";  
+let boloSelecionado="";  
+  
+function criarItem(nome,preco,container,tipo){  
+ const div=document.createElement("div");  
+ div.className="card";  
+ div.innerHTML=`  
+   <div class="nome">${nome}</div>  
+   <div class="preco">R$ ${preco}</div>  
+   <button onclick="encomendar('${nome}','${tipo}')">Encomendar</button>  
+ `;  
+ document.getElementById(container).appendChild(div);  
+}  
+  
+function saudacao(){  
+ const h=new Date().getHours();  
+ if(h>=6 && h<12) return "Bom dia";  
+ if(h>=12 && h<18) return "Boa tarde";  
+ return "Boa noite";  
+}  
+  
+function encomendar(produto,tipo){  
+  
+ const audio=document.getElementById("clickSound");  
+ if(audio){ audio.currentTime=0; audio.play(); }  
+  
+ if(tipo==="bolo redondo"){  
+   boloSelecionado=produto;  
+   document.getElementById("modalBolo").style.display="flex";  
+   return;  
+ }  
+  
+ const msg=`${saudacao()}! Gostaria de encomendar ${tipo} sabor "${produto}"`;  
+ const url=`https://wa.me/${telefone}?text=${encodeURIComponent(msg)}`;  
+  
+ setTimeout(()=>window.open(url,"_blank"),200);  
+}  
+  
+function fecharModal(){  
+ document.getElementById("modalBolo").style.display="none";  
+}  
+  
+function confirmarBolo(){  
+  
+ const r1=document.getElementById("recheio1").value;  
+ const r2=document.getElementById("recheio2").value;  
+ const massa=document.getElementById("massa").value;  
+  
+ const msg=`${saudacao()}! Gostaria de encomendar:  
+  
+Bolo redondo ${boloSelecionado}  
+  
+Recheio 1: ${r1}  
+Recheio 2: ${r2}  
+Massa: ${massa}`;  
+  
+ const url=`https://wa.me/${telefone}?text=${encodeURIComponent(msg)}`;  
+  
+ window.open(url,"_blank");  
+  
+ fecharModal();  
+}  
+  
+[  
+["Choc. meio amargo","95,00"],  
+["Nozes","95,00"],  
+["Sensação","95,00"],  
+["Sonho de valsa","115,00"],  
+["Ouro Branco","115,00"],  
+["Prestígio","115,00"],  
+["Abacaxi","115,00"],  
+["Mousse maracujá trufado","115,00"]  
+].forEach(i=>criarItem(i[0],i[1],"bolos","bolo gelado"));  
+  
+[  
+["15cm (10 a 12 fatias)","140,00"],  
+["20cm (até 25 fatias)","200,00"],  
+["25cm (até 44 fatias)","280,00"]  
+].forEach(i=>criarItem(i[0],i[1],"bolosRedondos","bolo redondo"));  
+  
+[  
+["Limão","100,00"],  
+["Limão c/ chocolate","120,00"],  
+["Morango","120,00"],  
+["Banoff","120,00"],  
+["Holandesa","160,00"]  
+].forEach(i=>criarItem(i[0],i[1],"tortas","torta"));  
+  
+[  
+["Pavê sonho de valsa","130,00"],  
+["Pavê ouro branco","130,00"],  
+["Bombom morango","130,00"],  
+["Bombom uva","130,00"],  
+["Pudim","60,00"]  
+].forEach(i=>criarItem(i[0],i[1],"doces","doce"));  
+[
+["Brigadeiro","150,00 o cento"],
+["Beijinho","150,00 o cento"],
+["Bicho de pé","150,00 o cento"],
+["Leite ninho","150,00 o cento"]
+].forEach(i=>criarItem(i[0],i[1],"docinhos","docinho"));
+
+[
+["Brigadeiro gourmet","200,00 o cento"],
+["Brigadeiro branco","200,00 o cento"],
+["Beijinho","200,00 o cento"],
+["Leite ninho","200,00 o cento"],
+["Bicho de pé","200,00 o cento"],
+["Mousse de maracujá","200,00 o cento"],
+["Mousse de morango","200,00 o cento"],
+["Mousse de limão","200,00 o cento"]
+].forEach(i=>criarItem(i[0],i[1],"trufas","mini trufa"));
+  
+const obs=new IntersectionObserver(entries=>{  
+ entries.forEach(e=>{  
+  if(e.isIntersecting) e.target.classList.add("show");  
+ });  
+},{threshold:.2});  
+  
+setTimeout(()=>{  
+ document.querySelectorAll(".card").forEach(c=>obs.observe(c));  
+},300);  
+  
+window.addEventListener("load",()=>{  
+ document.getElementById("loader").style.display="none";  
+});  
+  
+const hora=new Date().getHours();  
+if(hora>=18 || hora<6){  
+ document.body.classList.add("dark");  
+}  
+  
+</script>  </body>  </html>  
